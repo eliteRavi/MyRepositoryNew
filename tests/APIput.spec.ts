@@ -13,6 +13,6 @@ test("PUT UPDATE ", async ({ request }) => {
 
 
     const specdata = await putreq.json()
-    console.log(specdata)
+    //console.log(specdata)
 
 })
