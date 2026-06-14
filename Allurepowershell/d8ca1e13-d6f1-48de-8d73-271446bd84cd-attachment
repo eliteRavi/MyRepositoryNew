@@ -1,0 +1,129 @@
+# Instructions
+
+- Following Playwright test failed.
+- Explain why, be concise, respect Playwright best practices.
+- Provide a snippet of code with the fix, if possible.
+
+# Test info
+
+- Name: teststoragestate.spec.ts >> Authentication State LOGIN PAGE
+- Location: tests\teststoragestate.spec.ts:5:6
+
+# Error details
+
+```
+Test timeout of 30000ms exceeded.
+```
+
+```
+Error: page.waitForURL: Test timeout of 30000ms exceeded.
+=========================== logs ===========================
+waiting for navigation to "https://opensource-demo.orangehrmlive.com/web/index.php/dashboard/index" until "load"
+============================================================
+```
+
+# Page snapshot
+
+```yaml
+- generic [ref=e4]:
+  - generic [ref=e6]:
+    - img "company-branding" [ref=e8]
+    - generic [ref=e9]:
+      - heading "Login" [level=5] [ref=e10]
+      - generic [ref=e11]:
+        - generic [ref=e12]:
+          - alert [ref=e13]:
+            - generic [ref=e14]:
+              - generic [ref=e15]: 
+              - paragraph [ref=e16]: CSRF token validation failed
+          - generic [ref=e18]:
+            - paragraph [ref=e19]: "Username : Admin"
+            - paragraph [ref=e20]: "Password : admin123"
+        - generic [ref=e21]:
+          - generic [ref=e23]:
+            - generic [ref=e24]:
+              - generic [ref=e25]: 
+              - generic [ref=e26]: Username
+            - textbox "Username" [active] [ref=e28]
+          - generic [ref=e30]:
+            - generic [ref=e31]:
+              - generic [ref=e32]: 
+              - generic [ref=e33]: Password
+            - textbox "Password" [ref=e35]
+          - button "Login" [ref=e37] [cursor=pointer]
+          - paragraph [ref=e39] [cursor=pointer]: Forgot your password?
+        - separator [ref=e40]
+        - paragraph [ref=e42]: Or login with
+        - generic [ref=e43]:
+          - generic "vgjjk" [ref=e44] [cursor=pointer]:
+            - paragraph [ref=e45]: vgjjk
+          - generic "1234" [ref=e46] [cursor=pointer]:
+            - paragraph [ref=e47]: "1234"
+          - generic "jhdu3hdd" [ref=e48] [cursor=pointer]:
+            - paragraph [ref=e49]: jhdu3hdd
+      - generic [ref=e50]:
+        - generic [ref=e51]:
+          - link [ref=e52] [cursor=pointer]:
+            - /url: https://www.linkedin.com/company/orangehrm/mycompany/
+          - link [ref=e55] [cursor=pointer]:
+            - /url: https://www.facebook.com/OrangeHRM/
+          - link [ref=e58] [cursor=pointer]:
+            - /url: https://twitter.com/orangehrm?lang=en
+          - link [ref=e61] [cursor=pointer]:
+            - /url: https://www.youtube.com/c/OrangeHRMInc
+        - generic [ref=e64]:
+          - paragraph [ref=e65]: OrangeHRM OS 5.8
+          - paragraph [ref=e66]:
+            - text: © 2005 - 2026
+            - link "OrangeHRM, Inc" [ref=e67] [cursor=pointer]:
+              - /url: http://www.orangehrm.com
+            - text: . All rights reserved.
+  - img "orangehrm-logo" [ref=e69]
+```
+
+# Test source
+
+```ts
+  1  | import{test,expect} from "@playwright/test"
+  2  | import data from "../data-files/data.json"
+  3  | 
+  4  | 
+  5  | test.only('Authentication State LOGIN PAGE',async ({page})=>{
+  6  | 
+  7  | await page.goto("https://opensource-demo.orangehrmlive.com/")
+  8  | await page.getByPlaceholder("Username").fill(data.username)
+  9  | await page.getByPlaceholder("Password").fill(data.password)
+  10 | await page.getByRole("button",{name:'Login'}).click()
+> 11 | await page.waitForURL("https://opensource-demo.orangehrmlive.com/web/index.php/dashboard/index")
+     |            ^ Error: page.waitForURL: Test timeout of 30000ms exceeded.
+  12 | await expect(page.getByRole("heading",{name:'Dashboard'})).toBeVisible()
+  13 | await expect(page.getByAltText("client brand banner")).toBeVisible()
+  14 | 
+  15 | 
+  16 | 
+  17 | 
+  18 | })
+  19 | 
+  20 | test("Assign Page",async({page})=>{
+  21 | 
+  22 | await page.getByRole('button', { name: 'Assign Leave'}).click()
+  23 | await expect(page.getByRole('button', { name: 'Assign',exact:true})).toBeVisible()
+  24 | 
+  25 | // await expect(page.getByRole("link",{name:'Candidates'})).toBeVisible()
+  26 | })
+  27 | 
+  28 | 
+  29 | test(" Page",async({page})=>{
+  30 | 
+  31 | await page.getByRole('link', { name: 'Claim'}).click()
+  32 | // await expect(page.getByRole("button",{name:'Assign Claim'})).toBeVisible()
+  33 | 
+  34 | })
+  35 | 
+  36 | 
+  37 | 
+  38 | 
+  39 | 
+  40 | 
+  41 | 
+```
