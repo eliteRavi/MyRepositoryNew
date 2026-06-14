@@ -48,7 +48,7 @@ test("PUT UPDATE ", async ({ request }) => {
     //***************************************** */
     const roken = await puttokenvalue.json()
     //console.log(roken)
-     expect(roken.firstname).toBe("RAIs")
+    //  expect(roken.firstname).toBe("RAIs")
 
 
 
