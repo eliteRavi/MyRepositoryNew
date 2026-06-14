@@ -3,7 +3,7 @@ import { test, request, expect } from "@playwright/test";
 
 let reqcontext3: any
 
-test.skip("3rd method of api use it for  apllicable toall test ", async () => {
+test("3rd method of api use it for  apllicable toall test ", async () => {
 
     reqcontext3 = await request.newContext({
         baseURL: "https://restful-booker.herokuapp.com",
@@ -17,7 +17,7 @@ test.skip("3rd method of api use it for  apllicable toall test ", async () => {
 
 })
 
-test.skip("1st method GET CALL OF API", async ({ request }) => {
+test("1st method GET CALL OF API", async ({ request }) => {
 
     const getres = await request.get("https://restful-booker.herokuapp.com/booking", {
 
@@ -33,7 +33,7 @@ test.skip("1st method GET CALL OF API", async ({ request }) => {
 
 })
 
-test.skip("2nd method of get call", async () => {
+test("2nd method of get call", async () => {
 
     const reqcontext = await request.newContext({
         baseURL: "https://restful-booker.herokuapp.com",
@@ -50,21 +50,21 @@ test.skip("2nd method of get call", async () => {
 })
 
 
-test.skip("3nd method of get call with header", async () => {
+test("3nd method of get call with header", async () => {
 
     const reqres3 = await reqcontext3.get("/booking")
     console.log(await reqres3.json())
 })
 
 
-test.skip("4th method global config with header ", async ({ request }) => {
+test("4th method global config with header ", async ({ request }) => {
 
     const method4t = await request.get("/booking/?firstname=John&lastname=Smith")
     console.log(await method4t.json())
 
 }
 )
-test.skip("4th method global config with header and qurry params", async ({ request }) => {
+test("4th method global config with header and qurry params", async ({ request }) => {
 
     const method4t = await request.get("/booking/?&", {
         params: {
@@ -78,7 +78,7 @@ test.skip("4th method global config with header and qurry params", async ({ requ
 )
 
 
-test.only("4th method global config and verifictaion asssertion ", async ({ request }) => {
+test("4th method global config and verifictaion asssertion ", async ({ request }) => {
 
     const method4t = await request.get("/booking/82")
     const ver = await method4t.json()
